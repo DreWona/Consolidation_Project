@@ -11,8 +11,7 @@ def short_rule():
         2.Players set a winning score. highest score at the end of 3 turn wins
         3.Rolling two of the same number allows you to reroll if you want.
         4.Tuple out mean you earn 0 points
-        5.If you dont tuple you cant reroll for that turn,(you get what you deserve).
-        6.Each player gets 3 turns
+        6.If 3 die are unique, player can reroll 3 die or choose not to
           """)
 
 #Function for rolling a 6 sided die
@@ -32,8 +31,10 @@ def players_turn(player_name):
 
     #Tuple check, if dice role 1,2,3 are the same = 0 points
     if dice[0] == dice[1] == dice[2]:
-        print(f"All dice are the same number, {player_name} earn 0 points this turn.")
+        print(f"All dice are the same number, {player_name} earn 0 points this turn. \n")
         return 0
+    #the culprit that prevents it from breaking when player says 'n'
+    score =sum(dice)
     
     #When a tuple occurs allow a reroll of the non tuple die..
     while True:
@@ -43,33 +44,34 @@ def players_turn(player_name):
         #print(f"Fixed dice: {fixed_dice}. You can reroll {free_dice_count} dice.")
         #If no Fixed dice/no reroll on turn 
         if free_dice_count == 0:       #or input("Reroll free dice? (y/n): ").strip().lower() != "y":
-            print("All dice have a different value. Turn ends.")
+            print("All dice have a different value. Turn ends.\n")
             break
 
         print(f"Fixed dice: {fixed_dice}. You can reroll {free_dice_count} dice.")
         roll_or_not = input("Reroll free dice? (y/n): ").strip().lower()
+        
         #if plyer dont want to reroll, end.
         if roll_or_not == "n":
-            print("Not rerolls, turn ends")
-            break
+            print("No rerolls, turn ends,\n")
+            return score #Ends the player turn when they say no
         elif roll_or_not == "y":
             #Reroll free dice
-            #Dice roll func + free dice thats not a tuple/fixed for new value.
             new_roll = dice_roll(free_dice_count)
-            print(f"You rerolled: {new_roll}")
+            print(f"You rerolled: {new_roll}.\n")
             dice = fixed_dice + new_roll
 
             #Check if its a tuple again
             if dice[0] == dice[1] == dice[2]:
-                print("All dice are the same number, You earn 0 points this turn.")
+                print("All dice are the same number, You earn 0 points this turn.\n")
                 return 0
         else:
             print("Enter 'y' or 'n'.")
         
         #Calc score
         score = sum(dice)
-        print(f"{player_name}'s score for this turn: {score}")
+        print(f"{player_name}'s score for this turn: {score}.\n")
         return score
+    return score
 
 #Function for the main game loop
 def start_game():
@@ -84,7 +86,7 @@ def start_game():
             if 1 <= player_count <= 3:
                 break
             else:
-                print("Players can only range between 1 and 3.")
+                print("Players can only range between 1 and 3.\n")
         except ValueError:
             print("Not the required number. Try again")
 
@@ -99,7 +101,7 @@ def start_game():
     #Scores to set
     while True:
         try:
-            win_condition = int(input("Set score to reach for win: "))
+            win_condition = int(input("Set score to reach for win: \n"))
             if win_condition > 0:
                 break
             else:
@@ -114,7 +116,9 @@ def start_game():
     while True:
         for player in player_names:
             print(f"{player}'s current score: {scores[player]}")
-            scores[player] += players_turn(player)
+            turn_score = players_turn(player)
+            #Adds up the scores from previous turns
+            scores[player] += turn_score 
 
             if scores[player] >= win_condition:
                 print(f"{player} wins with {scores[player]} points")
