@@ -11,14 +11,14 @@ def short_rule():
         2.Players set a winning score. highest score at the end of 3 turn wins
         3.Rolling two of the same number allows you to reroll if you want.
         4.Tuple out mean you earn 0 points
-        6.If 3 die are unique, player can reroll 3 die or choose not to
+        6.If 3 die are unique, player can reroll 3 die once or choose not to
           """)
 
 #Function for rolling a 6 sided die
 
 #Three dice with values ranging from 1-6 for random rolls
 def dice_roll(dice_count=3):
-    return[random.randint(1,6) for _ in range(dice_count)] 
+    return[random.randint(1,6) for reach in range(dice_count)] 
 
 
 #For players turn
