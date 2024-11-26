@@ -6,15 +6,14 @@ import random
 def short_rule():
     print("""
     Tupple out game.
-          Rules: Let luck be on your side
-          1. Maximum player is 3 but 1-3 can play. Each player enters their name.
-          2.Players set a winning score. highest score at the end of 3 turn wins
-          3.Rolling two of the same number allows you to reroll if you want.
-          4.Tuple out mean you earn 0 points
-          5.If you dont tuple you cant reroll for that turn,(you get what you deserve).
-          6.Each player gets 3 turns
-
-""")
+        Rules: Let luck be on your side
+        1. Maximum player is 3 but 1-3 can play. Each player enters their name.
+        2.Players set a winning score. highest score at the end of 3 turn wins
+        3.Rolling two of the same number allows you to reroll if you want.
+        4.Tuple out mean you earn 0 points
+        5.If you dont tuple you cant reroll for that turn,(you get what you deserve).
+        6.Each player gets 3 turns
+          """)
 
 #Function for rolling a 6 sided die
 
@@ -68,3 +67,23 @@ def players_turn(player_name):
         score = sum(dice)
         print(f"{player_name}'s score for this turn: {score}")
         return score
+
+def start_game():
+    #print the rules
+    short_rule()
+    print("Welcome to Tuple out.\n" )
+    player_count = int(input("How many player (1-3): "))
+    player_name = (input("Enter name: "))
+    win_condition = int(input("Set score to reach for win: "))
+
+    scores = [0] * player_count
+
+    while True:
+        for p in range(player_count):
+            print(f"player {p + 1}'s current score: {scores[p]}")
+            scores[p] += players_turn(f"Player {p + 1}")
+
+    
+start_game()
+
+
