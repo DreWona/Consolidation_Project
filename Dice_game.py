@@ -10,8 +10,9 @@ def short_rule():
         1. Maximum player is 3 but 1-3 can play. Each player enters their name.
         2.Players set a winning score. highest score at the end of 3 turn wins
         3.Rolling two of the same number allows you to reroll if you want.
-        4.Tuple out mean you earn 0 points
-        6.If 3 die are unique, player can reroll 3 die once or choose not to
+        4.Tuple [4,4,4] out mean you earn 0 points
+        6.If 3 die are unique [1,2,3], player can reroll 3 die once or choose not to
+        7. If you choose to reroll 3 "unique" number and get [3,5,3]. You cant reroll
           """)
 
 #Function for rolling a 6 sided die
@@ -47,7 +48,7 @@ def players_turn(player_name):
             print("All dice have a different value. Turn ends.\n")
             break
 
-        print(f"Fixed dice: {fixed_dice}. You can reroll {free_dice_count} dice.")
+        print(f"Fixed dice: {fixed_dice}. You can reroll {free_dice_count} dice once.")
         roll_or_not = input("Reroll free dice? (y/n): ").strip().lower()
         
         #if plyer dont want to reroll, end.

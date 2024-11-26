@@ -5,8 +5,8 @@
 2. **Players set a winning score. highest score at the end of how ever many turn wins
 3. **Rolling two of the same number allows you to reroll if you want.
 4. **Tuple [4,4,4] out mean you earn 0 points
-5. **If 3 die are unique, player can reroll 3 die once or choose not to
-6. 
+5. **If 3 die are unique [1,2,3], player can reroll 3 die once or choose not to
+6. **If you choose to reroll 3 "unique" number and get [3,5,3]. You cant reroll
 
 ## Module random for dice rolling
 
