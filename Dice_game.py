@@ -32,7 +32,7 @@ def players_turn(player_name):
 
     #Tuple check, if dice role 1,2,3 are the same = 0 points
     if dice[0] == dice[1] == dice[2]:
-        print("All dice are the same number, You earn 0 points this turn.")
+        print(f"All dice are the same number, {player_name} earn 0 points this turn.")
         return 0
     
     #When a tuple occurs allow a reroll of the non tuple die..
@@ -49,41 +49,78 @@ def players_turn(player_name):
         print(f"Fixed dice: {fixed_dice}. You can reroll {free_dice_count} dice.")
         roll_or_not = input("Reroll free dice? (y/n): ").strip().lower()
         #if plyer dont want to reroll, end.
-        if roll_or_not != "y":
+        if roll_or_not == "n":
+            print("Not rerolls, turn ends")
             break
+        elif roll_or_not == "y":
+            #Reroll free dice
+            #Dice roll func + free dice thats not a tuple/fixed for new value.
+            new_roll = dice_roll(free_dice_count)
+            print(f"You rerolled: {new_roll}")
+            dice = fixed_dice + new_roll
 
-        #Reroll free dice
-        #Dice roll func + free dice thats not a tuple/fixed for new value.
-        new_roll = dice_roll(free_dice_count)
-        print(f"You rerolled: {new_roll}")
-        dice = fixed_dice + new_roll
-
-        #Check if its a tuple again
-        if dice[0] == dice[1] == dice[2]:
-            print("All dice are the same number, You earn 0 points this turn.")
-            return 0
+            #Check if its a tuple again
+            if dice[0] == dice[1] == dice[2]:
+                print("All dice are the same number, You earn 0 points this turn.")
+                return 0
+        else:
+            print("Enter 'y' or 'n'.")
         
         #Calc score
         score = sum(dice)
         print(f"{player_name}'s score for this turn: {score}")
         return score
 
+#Function for the main game loop
 def start_game():
     #print the rules
     short_rule()
     print("Welcome to Tuple out.\n" )
-    player_count = int(input("How many player (1-3): "))
-    player_name = (input("Enter name: "))
-    win_condition = int(input("Set score to reach for win: "))
-
-    scores = [0] * player_count
-
-    while True:
-        for p in range(player_count):
-            print(f"player {p + 1}'s current score: {scores[p]}")
-            scores[p] += players_turn(f"Player {p + 1}")
-
     
+    #Set number of player (1-3)
+    while True:
+        try:
+            player_count = int(input("How many player (1-3): "))
+            if 1 <= player_count <= 3:
+                break
+            else:
+                print("Players can only range between 1 and 3.")
+        except ValueError:
+            print("Not the required number. Try again")
+
+    #Set player name based on amount of players
+    player_names = []
+    for number in range(player_count):
+        #Uses the player count number as to set specific amount of names
+        name = input(f"Name the player {number + 1}: ")
+        #Takes the names enter and appends it to the player name list
+        player_names.append(name) 
+    
+    #Scores to set
+    while True:
+        try:
+            win_condition = int(input("Set score to reach for win: "))
+            if win_condition > 0:
+                break
+            else:
+                print("Score must be higher than 0")
+        except ValueError:
+            print("zeroes and Negative numbers not allowed.")
+
+    #For scores
+    scores = {name: 0 for name in player_names}
+
+    #
+    while True:
+        for player in player_names:
+            print(f"{player}'s current score: {scores[player]}")
+            scores[player] += players_turn(player)
+
+            if scores[player] >= win_condition:
+                print(f"{player} wins with {scores[player]} points")
+                return
+
+ #Starts the full game   
 start_game()
 
 
