@@ -2,6 +2,7 @@
 
 #Module for random dice rolls
 import random
+import time as clock
 
 def short_rule():
     print("""
@@ -26,6 +27,7 @@ def dice_roll(dice_count=3):
 #For players turn
 def players_turn(player_name):
     print(f"{player_name}'s turn")
+    clock.sleep(2)
     
     #Passes the  dice role func to the variable dice
     dice = dice_roll()
@@ -117,6 +119,7 @@ def start_game():
     #
     while True:
         for player in player_names:
+            clock.sleep(2)
             print(f"{player}'s current score: {scores[player]}")
             turn_score = players_turn(player)
             #Adds up the scores from previous turns

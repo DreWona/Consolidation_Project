@@ -25,3 +25,5 @@
 6. Name each player
 7. Reroll when prompter IF you want
 
+## ADVANCE Features
+1. Imported Time as clock to add a slight delay between players turn and roll so that it obvious whos turn it is.
