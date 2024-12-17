@@ -3,6 +3,7 @@
 #Module for random dice rolls
 import random
 import time as clock
+import pandas as pd
 
 def short_rule():
     print("""

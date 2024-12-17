@@ -27,3 +27,4 @@
 
 ## ADVANCE Features
 1. Imported Time as clock to add a slight delay between players turn and roll so that it obvious whos turn it is.
+2. Players can see the local date and time at the start and end of the game.
