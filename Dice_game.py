@@ -27,7 +27,7 @@ def dice_roll(dice_count=3):
 #For players turn
 def players_turn(player_name):
     print(f"{player_name}'s turn")
-    clock.sleep(2)
+    clock.sleep(1.5)
     
     #Passes the  dice role func to the variable dice
     dice = dice_roll()
@@ -83,8 +83,9 @@ def start_game():
     short_rule()
     print("Welcome to Tuple out.\n" )
     
-    current_time = clock.strftime("%Y-%m-%d %H:%M:%S", clock.localtime())
-    print(f"Current time {current_time} \n")
+    #Shows the date and time the game starts
+    current_time = clock.strftime("%m-%d-%Y %H:%M:%S", clock.localtime())
+    print(f"Game started at: {current_time} \n")
     
     #Set number of player (1-3)
     while True:
@@ -122,7 +123,8 @@ def start_game():
     #
     while True:
         for player in player_names:
-            clock.sleep(2)
+            #Staggers the rolling popup
+            clock.sleep(1.5)
             print(f"{player}'s current score: {scores[player]}")
             turn_score = players_turn(player)
             #Adds up the scores from previous turns
@@ -130,6 +132,9 @@ def start_game():
 
             if scores[player] >= win_condition:
                 print(f"{player} wins with {scores[player]} points")
+                #Shows the time the game ended
+                current_time = clock.strftime("%m-%d-%Y %H:%M:%S", clock.localtime())
+                print(f"Game Ended at: {current_time} \n")
                 return
 
  #Starts the full game   
