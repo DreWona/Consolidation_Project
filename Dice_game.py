@@ -83,6 +83,9 @@ def start_game():
     short_rule()
     print("Welcome to Tuple out.\n" )
     
+    current_time = clock.strftime("%Y-%m-%d %H:%M:%S", clock.localtime())
+    print(f"Current time {current_time} \n")
+    
     #Set number of player (1-3)
     while True:
         try:
