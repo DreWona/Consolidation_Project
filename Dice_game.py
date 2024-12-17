@@ -151,18 +151,21 @@ def start_game():
                 #for stat in score_stat:
                     #print(stat)
                 #Passing score stat to a new function
-                score_digest(score_stat)
+                score_digest(score_stat, player_names)
                 return
 #New function to display a table of scores at the end.
 def score_digest(score_stat, player_names):
-    print("Score Table \n", "-" * 20)
+    print("Score Table \n" + "-" * 20)
     table = pd.DataFrame(score_stat)
     
     for player in player_names:
         print(f"{player} Scores:\n")
         player_table = table[table["Player"] == player] 
-        #total_score = player_table
-        print(table.to_string(index = False))
+        total_score = player_table["Score"].sum()
+        
+        print(player_table.to_string(index = False))
+        print(f"{total_score}")
+#score_digest()
 
             
 
