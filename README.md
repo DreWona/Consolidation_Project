@@ -29,3 +29,5 @@
 1. Imported Time as clock to add a slight delay between players turn and roll so that it obvious whos turn it is.
 2. Players can see the local date and time at the start and end of the game.
 3. Added a data table to show player turn score at the end of the game.
+
+## MIT License added

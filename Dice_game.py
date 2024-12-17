@@ -1,4 +1,5 @@
 #Tuple out game
+#Andre Wonasue
 
 #Module for random dice rolls
 import random
@@ -57,7 +58,7 @@ def players_turn(player_name):
         
         #if plyer dont want to reroll, end.
         if roll_or_not == "n":
-            print("No rerolls, turn ends,\n")
+            print("No rerolls, turn ends.\n")
             return score #Ends the player turn when they say no
         elif roll_or_not == "y":
             #Reroll free dice
@@ -155,19 +156,19 @@ def start_game():
                 return
 #New function to display a table of scores at the end.
 def score_digest(score_stat, player_names):
-    print("Score Table \n" + "-" * 20)
+    print("Score Table \n" + "-" * 25)
     table = pd.DataFrame(score_stat)
     
     for player in player_names:
-        print(f"{player} Scores:\n")
+        print(f"{player} Scores:\n" + "-" * 25)
+        #Seperates the players table
         player_table = table[table["Player"] == player] 
         total_score = player_table["Score"].sum()
         
+        #Shows the table with out indexing
         print(player_table.to_string(index = False))
-        print(f"{total_score}")
+        print(f"Total score: {total_score}\n" + "-" * 25)
 #score_digest()
-
-            
 
  #Starts the full game   
 start_game()
