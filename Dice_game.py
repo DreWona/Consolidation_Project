@@ -124,20 +124,24 @@ def start_game():
         except ValueError:
             print("zeroes and Negative numbers not allowed.")
 
-    #For scores
+    #For scores and score holding
+    score_stat = []
     scores = {name: 0 for name in player_names}
 
     #
     while True:
         for player in player_names:
-            score_stat = []
+            #score_stat = []
             #Staggers the rolling popup
             clock.sleep(1.5)
             print(f"{player}'s current score: {scores[player]}")
             turn_score = players_turn(player)
             #Adds up the scores from previous turns
             scores[player] += turn_score 
-            #score_stat.append({player, "turn" len(score_stat) + 1, "Score": turn_score})
+            score_stat.append({"Player": player, "Turn": len(score_stat) + 1, "Score": turn_score})
+
+            #Testing if it prints
+            print(score_stat)
 
             if scores[player] >= win_condition:
                 print(f"{player} wins with {scores[player]} points")
