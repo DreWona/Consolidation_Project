@@ -141,14 +141,24 @@ def start_game():
             score_stat.append({"Player": player, "Turn": len(score_stat) + 1, "Score": turn_score})
 
             #Testing if it prints
-            print(score_stat)
+            #print(score_stat)
 
             if scores[player] >= win_condition:
                 print(f"{player} wins with {scores[player]} points")
                 #Shows the time the game ended
                 current_time = clock.strftime("%m-%d-%Y %H:%M:%S", clock.localtime())
                 print(f"Game Ended at: {current_time} \n")
+                #for stat in score_stat:
+                    #print(stat)
+                #Passing score stat to a new function
+                score_digest(score_stat)
                 return
+
+def score_digest(score_stat):
+    #print("._." * 20)
+    df = pd.DataFrame(score_stat)
+    print(df.to_string)
+
             
 
  #Starts the full game   
