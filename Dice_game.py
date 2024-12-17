@@ -87,6 +87,12 @@ def start_game():
     #Shows the date and time the game starts
     current_time = clock.strftime("%m-%d-%Y %H:%M:%S", clock.localtime())
     print(f"Game started at: {current_time} \n")
+
+    #test
+    #scores_stat = []
+    #for palyers in player_names:
+        #turn_score = players_turn(player)
+       
     
     #Set number of player (1-3)
     while True:
@@ -124,12 +130,14 @@ def start_game():
     #
     while True:
         for player in player_names:
+            score_stat = []
             #Staggers the rolling popup
             clock.sleep(1.5)
             print(f"{player}'s current score: {scores[player]}")
             turn_score = players_turn(player)
             #Adds up the scores from previous turns
             scores[player] += turn_score 
+            #score_stat.append({player, "turn" len(score_stat) + 1, "Score": turn_score})
 
             if scores[player] >= win_condition:
                 print(f"{player} wins with {scores[player]} points")
@@ -137,6 +145,7 @@ def start_game():
                 current_time = clock.strftime("%m-%d-%Y %H:%M:%S", clock.localtime())
                 print(f"Game Ended at: {current_time} \n")
                 return
+            
 
  #Starts the full game   
 start_game()
