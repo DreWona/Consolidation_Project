@@ -153,11 +153,16 @@ def start_game():
                 #Passing score stat to a new function
                 score_digest(score_stat)
                 return
-
-def score_digest(score_stat):
-    #print("._." * 20)
-    df = pd.DataFrame(score_stat)
-    print(df.to_string)
+#New function to display a table of scores at the end.
+def score_digest(score_stat, player_names):
+    print("Score Table \n", "-" * 20)
+    table = pd.DataFrame(score_stat)
+    
+    for player in player_names:
+        print(f"{player} Scores:\n")
+        player_table = table[table["Player"] == player] 
+        #total_score = player_table
+        print(table.to_string(index = False))
 
             
 
